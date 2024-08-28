@@ -1,0 +1,67 @@
+{% extends 'dashboard/base.html' %}
+
+{% block our_volunteers_active %} active {% endblock %}
+
+{% block page_name %} Our Volunteers {% endblock %}
+
+{% block body %}
+
+
+<div class="panel-header panel-header-sm">
+</div>
+
+
+<div class="content">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-body ">
+                    <!-- <div id="satelliteMap" class="map"></div> -->
+
+                    <gmp-map center="27.6057,77.5933" zoom="8" map-id="DEMO_MAP_ID" style="height: 400px">
+                    </gmp-map>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div class="col-md-6">
+            <div class="card ">
+                <div class="card-header ">
+                    <h4 class="card-title">Regular Map</h4>
+                </div>
+                <div class="card-body ">
+                    <div id="regularMap" class="map"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card ">
+                <div class="card-header ">
+                    <h4 class="card-title">Custom Skin & Settings Map</h4>
+                </div>
+                <div class="card-body ">
+                    <div id="customSkinMap" class="map"></div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4JPtLye2vha0SXv7BTjJq_Ist4bJnYo&callback=console.debug&libraries=maps,marker&v=beta">
+    </script>
+
+<script>
+    function myMap() {
+        var mapProp = {
+            center: new google.maps.LatLng(51.508742, -0.120850),
+            zoom: 5,
+        };
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    }
+</script>
+
+{% endblock %}
