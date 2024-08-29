@@ -1,10 +1,12 @@
 from django.urls import path
 
-from . import views, apis
+from . import views, apis, survillance
 
 urlpatterns = [
     path("", views.dashboard, name="dashboard"),
     path("our_volunteers", views.our_volunteers, name="our_volunteers"),
+    path("danger_zones", views.danger_zones, name="danger_zones"),
+    path("cctv", survillance.cctv, name="cctv"),
     
     path('api/sos-call/', views.sos_call, name='sos_call'),
     

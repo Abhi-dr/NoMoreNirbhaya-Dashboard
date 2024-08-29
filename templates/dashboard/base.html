@@ -68,9 +68,9 @@
 
 
 
-        {% block css %}
+    {% block css %}
 
-        {% endblock %}
+    {% endblock %}
 
 </head>
 
@@ -138,11 +138,21 @@
                         
                     </div>
                 </div> -->
+
+
+
                 <ul class="nav">
                     <li class="{% block dashboard_active %} {% endblock %}">
                         <a href="{% url 'dashboard' %}">
                             <i class="now-ui-icons design_app"></i>
                             <p>Dashboard</p>
+                        </a>
+                    </li>
+
+                    <li class="{% block cctv_active %} {% endblock %}">
+                        <a href="{% url 'cctv' %}">
+                            <i class="now-ui-icons business_bulb-63"></i>
+                            <p>CCTV Survillance</p>
                         </a>
                     </li>
 
@@ -157,6 +167,13 @@
                         <a href="#">
                             <i class="now-ui-icons users_single-02"></i>
                             <p>Users</p>
+                        </a>
+                    </li>
+
+                    <li class="{% block danger_zones_active %} {% endblock %}">
+                        <a href="{% url 'danger_zones' %}">
+                            <i class="now-ui-icons location_map-big"></i>
+                            <p>Danger Zones</p>
                         </a>
                     </li>
 
@@ -396,6 +413,7 @@
                      -->
                 </ul>
             </div>
+            
         </div>
         <div class="main-panel" id="main-panel">
 

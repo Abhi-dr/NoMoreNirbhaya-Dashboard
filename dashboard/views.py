@@ -20,6 +20,11 @@ def our_volunteers(request):
     return render(request, "dashboard/our_volunteers.html")
 
 
+# ====================================== DANGER ZONES ======================================
+
+def danger_zones(request):
+    return render(request, "dashboard/danger_zones.html")
+
 # ============================================================================================
 
 
