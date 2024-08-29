@@ -4,6 +4,16 @@
 
 {% block page_name %} Our Volunteers {% endblock %}
 
+{% block css %}
+
+<style>
+    #map {
+        height: 70vh;
+    }
+</style>
+
+{% endblock %}
+
 {% block body %}
 
 
@@ -17,10 +27,7 @@
         <div class="col-md-12">
             <div class="card ">
                 <div class="card-body ">
-                    <!-- <div id="satelliteMap" class="map"></div> -->
-
-                    <gmp-map center="27.6057,77.5933" zoom="8" map-id="DEMO_MAP_ID" style="height: 400px">
-                    </gmp-map>
+                    <div id="map" class="map"></div>
 
                 </div>
             </div>
@@ -50,18 +57,50 @@
     </div>
 </div>
 
-<script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4JPtLye2vha0SXv7BTjJq_Ist4bJnYo&callback=console.debug&libraries=maps,marker&v=beta">
-    </script>
 
-<script>
-    function myMap() {
-        var mapProp = {
-            center: new google.maps.LatLng(51.508742, -0.120850),
-            zoom: 5,
-        };
-        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-    }
+<script async
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4JPtLye2vha0SXv7BTjJq_Ist4bJnYo&callback=console.debug&libraries=maps,marker&v=beta">
 </script>
 
+
+
+
+<script>
+    // Initialize and add the map
+    let map;
+
+    async function initMap() {
+        const position1 = { lat: -27.14158, lng: -37.17201 };
+        const position2 = { lat: 38.8977, lng: -77.0365 };
+
+        const { Map } = await google.maps.importLibrary("maps");
+        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+        map = new Map(document.getElementById("map"), {
+            zoom: 20,
+            center: position1,
+            mapId: "1",
+            mapTypeControl: true,
+            draggable: true
+        });
+
+        const marker1 = new AdvancedMarkerElement({
+            map: map,
+            position: position1,
+            title: "User Location",
+            gmpDraggable: true,
+        });
+
+        const marker2 = new AdvancedMarkerElement({
+            map: map,
+            position: position2,
+            title: "User Location",
+            gmpDraggable: true,
+        });
+    }
+
+    window.onload = () => {
+        initMap();
+    };
+</script>
 {% endblock %}
