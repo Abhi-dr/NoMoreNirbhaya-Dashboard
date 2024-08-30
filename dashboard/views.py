@@ -11,9 +11,13 @@ from .models import SOSAlert
 
 def dashboard(request):
     
-    api_url = "http://www.randomnumberapi.com/api/v1.0/random"
+    sos_calls = SOSAlert.objects.all().order_by('-timestamp')
     
-    return render(request, "dashboard/index.html")
+    parameters = {
+        "sos_calls": sos_calls
+    }
+    
+    return render(request, "dashboard/index.html", parameters)
 
 # ====================================== OUR VOLUNTEERS ======================================
 

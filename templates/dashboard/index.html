@@ -81,7 +81,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Our Volunteers</h4>
+          <h4 class="card-title">Last SOS Calls</h4>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -94,41 +94,42 @@
                   Name
                 </th>
                 <th>
-                  Age
+                  Phone Number
                 </th>
                 <th class="text-center">
-                  Location
+                  Latitude, Longitude
                 </th>
                 <th class="text-right">
-                  KYC
+                  Time
                 </th>
                 <th class="text-right">
                   Actions
                 </th>
               </thead>
               <tbody>
+
+                {% for call in sos_calls %}
+
                 <tr>
 
                   <td class="text-center">
-                    1
+                    {{ forloop.counter }}
                   </td>
 
                   <td>
-                    DK
+                    {{ call.name }}
                   </td>
 
                   <td>
-                    22
+                    {{ call.phone_number }}
                   </td>
 
                   <td class="text-center">
-                    GLA University, Mathura
+                    {{ call.latitude }}, {{ call.longitude }}
                   </td>
 
                   <td class="text-right">
-                    <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm ">
-                      <i class="now-ui-icons ui-1_simple-remove"></i>
-                    </button>
+                    {{ call.timestamp }}
                   </td>
 
                   <td class="text-right">
@@ -143,36 +144,8 @@
                     </button>
                   </td>
                 </tr>
-                <tr>
-                  <td class="text-center">
-                    2
-                  </td>
-                  <td>
-                    Naman Sharma
-                  </td>
-                  <td>
-                    21
-                  </td>
-                  <td class="text-center">
-                    Old RTO, Mathura
-                  </td>
-                  <td class="text-right">
-                    <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm ">
-                      <i class="now-ui-icons ui-1_simple-remove"></i>
-                    </button>
-                  </td>
-                  <td class="text-right">
-                    <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm   btn-neutral  ">
-                      <i class="now-ui-icons users_single-02"></i>
-                    </button>
-                    <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm   btn-neutral  ">
-                      <i class="now-ui-icons ui-2_settings-90"></i>
-                    </button>
-                    <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm   btn-neutral  ">
-                      <i class="now-ui-icons ui-1_simple-remove"></i>
-                    </button>
-                  </td>
-                </tr>
+
+                {% endfor %}
               </tbody>
             </table>
           </div>
@@ -244,7 +217,7 @@
 
   function fetchLatestSOSAlert() {
     $.ajax({
-      url: "13.126.142.219:8000/dashboard/api/fetch_sos_alert",  // The API endpoint
+      url: "http://13.126.142.219:8000/dashboard/api/fetch_sos_alert",  // The API endpoint
       method: 'GET',
       success: function (data) {
         if (data.alert) {
@@ -267,7 +240,7 @@
 
 
   function triggerSOSAlert() {
-    fetch("13.126.142.219:8000/dashboard/api/fetch_sos_alert")
+    fetch("http://13.126.142.219:8000/dashboard/api/fetch_sos_alert")
       .then(response => response.json())
       .then(data => {
         if (data.alert) {

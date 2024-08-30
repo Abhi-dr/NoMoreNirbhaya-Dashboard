@@ -11,19 +11,11 @@ import time
 # ====================================== SOS CALLS ======================================
 
 def get_sos_calls(request):
-    # api_url = "https://www.randomnumberapi.com/api/v1.0/random"
     
-    # try:
-    #     response = requests.get(api_url)
-    #     if response.status_code == 200:
-    #         random_number = response.json()
-    #     else:
-    #         random_number = 0
-    # except requests.RequestException as e:
-    #     print(f"API request failed: {e}")
-    #     random_number = 0
+    total_sos_calls = SOSAlert.objects.count()
     
-    return JsonResponse({'sos_calls': 10})
+    return JsonResponse({'sos_calls': total_sos_calls})
+
 
 # ====================================== GET VOLUNTEERS NUMBER ======================================
 
