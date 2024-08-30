@@ -96,15 +96,20 @@
                 <th>
                   Phone Number
                 </th>
+                
+                <th>
+                  Message
+                </th>
+
                 <th class="text-center">
                   Latitude, Longitude
                 </th>
                 <th class="text-right">
                   Time
                 </th>
-                <th class="text-right">
+                <!-- <th class="text-right">
                   Actions
-                </th>
+                </th> -->
               </thead>
               <tbody>
 
@@ -123,6 +128,10 @@
                   <td>
                     {{ call.phone_number }}
                   </td>
+                  
+                  <td>
+                    {{ call.message }}
+                  </td>
 
                   <td class="text-center">
                     {{ call.latitude }}, {{ call.longitude }}
@@ -135,7 +144,7 @@
                     {{ call.timestamp }}
                   </td>
 
-                  <td class="text-right">
+                  <!-- <td class="text-right">
                     <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm ">
                       <i class="now-ui-icons users_single-02"></i>
                     </button>
@@ -145,7 +154,7 @@
                     <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm ">
                       <i class="now-ui-icons ui-1_simple-remove"></i>
                     </button>
-                  </td>
+                  </td> -->
                 </tr>
 
                 {% endfor %}
