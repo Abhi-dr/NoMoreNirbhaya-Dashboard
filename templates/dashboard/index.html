@@ -244,7 +244,7 @@
 
   function fetchLatestSOSAlert() {
     $.ajax({
-      url: "https://nomorenirbhaya.pythonanywhere.com/api/fetch_sos_alert",  // The API endpoint
+      url: "13.126.142.219:8000/dashboard/api/fetch_sos_alert",  // The API endpoint
       method: 'GET',
       success: function (data) {
         if (data.alert) {
@@ -267,7 +267,7 @@
 
 
   function triggerSOSAlert() {
-    fetch("https://nomorenirbhaya.pythonanywhere.com/api/fetch_sos_alert")
+    fetch("13.126.142.219:8000/dashboard/api/fetch_sos_alert")
       .then(response => response.json())
       .then(data => {
         if (data.alert) {
