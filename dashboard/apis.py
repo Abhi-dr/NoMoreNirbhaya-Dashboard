@@ -71,7 +71,7 @@ def fetch_sos_alert(request):
         time_difference = timezone.now() - latest_alert.timestamp
 
         # Check if the latest alert was within the last 2 minutes
-        if time_difference <= timedelta(minutes=2):
+        if time_difference <= timedelta(seconds=10):
             alert_data = {
                 "message": latest_alert.message,
                 "name": latest_alert.name,

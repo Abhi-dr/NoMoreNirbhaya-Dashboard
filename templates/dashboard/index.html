@@ -126,6 +126,9 @@
 
                   <td class="text-center">
                     {{ call.latitude }}, {{ call.longitude }}
+                    <a href="https://www.google.com/maps/dir/?api=1&destination={{ call.latitude }},{{ call.longitude }}" type="button" target="_blank" rel="tooltip" class="btn btn-success btn-icon btn-sm ">
+                      <i class="now-ui-icons location_compass-05"></i>
+                    </a>
                   </td>
 
                   <td class="text-right">
