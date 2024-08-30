@@ -639,7 +639,7 @@ demo = {
             fill: true,
             backgroundColor: gradientFill,
             borderWidth: 2,
-            data: [50, 150, 100, 190, 130, 90, 150, 160, 120, 140, 190, 95],
+            data: [50, 150, 100, 190, 130, 90, 150, 160],
           },
         ],
       },
@@ -867,7 +867,7 @@ demo = {
       });
     }
   },
-  showSwal: function (type) {
+  showSwal: function (type, name, lat, lon) {
     if (type == "basic") {
       Swal.fire({
         title: "Here's a message!",
@@ -886,13 +886,22 @@ demo = {
       
       Swal.fire({
         title: "SOS CALL!!!",
-        text: "Someone Clicked the SOS!",
+        // text: "Someone Clicked the SOS!!!",
+        // text: "Name: " + name,
+        // text: "Latitude: " + lat + " Longitude: " + lon,
+
+        html:
+          "Name: <strong>" + name + "</strong> <br>" +
+          "Latitude: <strong>" + lat + "</strong> <br>" +
+          "Longitude: <strong>" + lon + "</strong> <br>",
+
         buttonsStyling: false,
         confirmButtonClass: "btn btn-danger",
         type: "danger",
         borderColor: "#ff0000",
         border: "2px solid #ff0000",
         borderWidth: "2px",
+
       });
 
 

@@ -77,18 +77,27 @@ def fetch_sos_alert(request):
         latest_alert = SOSAlert.objects.latest('timestamp')
         # Calculate the time difference
         time_difference = timezone.now() - latest_alert.timestamp
-        
+
         # Check if the latest alert was within the last 2 minutes
-        if time_difference <= timedelta(seconds=30):
+        if time_difference <= timedelta(minutes=2):
             alert_data = {
                 "message": latest_alert.message,
+                "name": latest_alert.name,
+                "latitude": latest_alert.latitude,
+                "longitude": latest_alert.longitude,
                 "timestamp": latest_alert.timestamp,
                 "time_difference": str(time_difference.seconds) + " seconds ago"
             }
-            return JsonResponse({"alert": alert_data})
+            response = JsonResponse({"alert": alert_data})
         else:
-            return JsonResponse({"alert": None, "message": "No recent SOS alerts"})
-    
+            response = JsonResponse({"alert": None, "message": "No recent SOS alerts (New)"})
+
+        # Add CORS headers to the response
+        response["Access-Control-Allow-Origin"] = "*"
+        return response
+
     except SOSAlert.DoesNotExist:
         # If no alerts exist in the database
-        return JsonResponse({"alert": None, "message": "No SOS alerts available"})
+        response = JsonResponse({"alert": None, "message": "No SOS alerts available (new)"})
+        response["Access-Control-Allow-Origin"] = "*"
+        return response
