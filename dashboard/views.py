@@ -11,7 +11,13 @@ from .models import SOSAlert, DangerZones
 
 def dashboard(request):
     
-    return render(request, "dashboard/index.html")
+    sos_calls = SOSAlert.objects.all().order_by("-timestamp")
+    
+    parameters = {
+        "sos_calls": sos_calls
+    }
+    
+    return render(request, "dashboard/index.html", parameters)
 
 # ====================================== OUR VOLUNTEERS ======================================
 
