@@ -4,20 +4,14 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import json
 
-from .models import SOSAlert
+from .models import SOSAlert, DangerZones
 
 
 # ====================================== DASHBOARD ======================================
 
 def dashboard(request):
     
-    sos_calls = SOSAlert.objects.all().order_by('-timestamp')
-    
-    parameters = {
-        "sos_calls": sos_calls
-    }
-    
-    return render(request, "dashboard/index.html", parameters)
+    return render(request, "dashboard/index.html")
 
 # ====================================== OUR VOLUNTEERS ======================================
 
@@ -28,7 +22,15 @@ def our_volunteers(request):
 # ====================================== DANGER ZONES ======================================
 
 def danger_zones(request):
-    return render(request, "dashboard/danger_zones.html")
+    
+    danger_zones = DangerZones.objects.all()
+    
+    parameters = {
+        "danger_zones": danger_zones
+    }
+    
+    
+    return render(request, "dashboard/danger_zones.html", parameters)
 
 # ============================================================================================
 

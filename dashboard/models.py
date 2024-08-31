@@ -16,4 +16,16 @@ class SOSAlert(models.Model):
 
     def __str__(self):
         return f"{self.message} at {self.timestamp}"
+
+
+class DangerZones(models.Model):
+    area_name = models.CharField(max_length=255)
+    latitude = models.FloatField()
+    longitude = models.FloatField()
+    cases = models.IntegerField()
     
+    def get_total_no_of_cases(self):
+        return self.cases
+
+    def increase_case(self):
+        self.cases += 1

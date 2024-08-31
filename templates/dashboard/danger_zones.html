@@ -21,7 +21,7 @@
 </div>
 
 
-<div class="content">
+<!-- <div class="content">
     <div class="row">
 
         <div class="col-md-12">
@@ -33,43 +33,96 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+
+<div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Last SOS Calls</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th class="text-center">
+                    #
+                  </th>
+                  <th>
+                    Area Name
+                  </th>
+                  <th>
+                    No. of Cases
+                  </th>
+                  
+                  <th>
+                    Coordinates
+                  </th>
+  
+                  <th class="text-center">
+                    Actions
+                  </th>
+                  
+                </thead>
+                <tbody>
+  
+                  {% for call in danger_zones %}
+  
+                  <tr>
+  
+                    <td class="text-center">
+                      {{ forloop.counter }}
+                    </td>
+  
+                    <td>
+                      {{ call.area_name }}
+                    </td>
+  
+                    <td>
+                      {{ call.get_total_no_of_cases }}
+                    </td>
+                    
+                    <td>
+                      {{ call.latitude }}, {{ call.longitude }}
+                    </td>
+  
+                    <td class="text-center">
+                      <a href="https://www.google.com/maps/dir/?api=1&destination={{ call.latitude }},{{ call.longitude }}" type="button" target="_blank" rel="tooltip" class="btn btn-success btn-icon btn-sm ">
+                        <i class="now-ui-icons location_compass-05"></i>
+                      </a>
+                    </td>
+  
+                    <!-- <td class="text-right">
+                      <button type="button" rel="tooltip" class="btn btn-info btn-icon btn-sm ">
+                        <i class="now-ui-icons users_single-02"></i>
+                      </button>
+                      <button type="button" rel="tooltip" class="btn btn-success btn-icon btn-sm ">
+                        <i class="now-ui-icons ui-2_settings-90"></i>
+                      </button>
+                      <button type="button" rel="tooltip" class="btn btn-danger btn-icon btn-sm ">
+                        <i class="now-ui-icons ui-1_simple-remove"></i>
+                      </button>
+                    </td> -->
+                  </tr>
+  
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  
 
 
 <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU4JPtLye2vha0SXv7BTjJq_Ist4bJnYo&callback=console.debug&libraries=maps,marker&v=beta">
     </script>
 
-<script>
-    /* Data points defined as an array of LatLng objects */
-    var heatmapData = [
-        new google.maps.LatLng(37.782, -122.447),
-        new google.maps.LatLng(37.782, -122.445),
-        new google.maps.LatLng(37.782, -122.443),
-        new google.maps.LatLng(37.782, -122.441),
-        new google.maps.LatLng(37.782, -122.439),
-        new google.maps.LatLng(37.782, -122.437),
-        new google.maps.LatLng(37.782, -122.435),
-        new google.maps.LatLng(37.785, -122.447),
-        new google.maps.LatLng(37.785, -122.445),
-        new google.maps.LatLng(37.785, -122.443),
-        new google.maps.LatLng(37.785, -122.441),
-        new google.maps.LatLng(37.785, -122.439),
-        new google.maps.LatLng(37.785, -122.437),
-        new google.maps.LatLng(37.785, -122.435)
-    ];
-
-    var sanFrancisco = new google.maps.LatLng(37.774546, -122.433523);
-
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: sanFrancisco,
-        zoom: 13,
-        mapTypeId: 'satellite'
-    });
-
-    var heatmap = new google.maps.visualization.HeatmapLayer({
-        data: heatmapData
-    });
-    heatmap.setMap(map);
-</script>
 {% endblock %}
