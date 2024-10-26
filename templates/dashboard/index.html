@@ -7,8 +7,8 @@
 
 {% block body %}
 
-<div class="panel-header panel-header-lg">
-  <canvas id="bigDashboardChart"></canvas>
+<div class="panel-header">
+  
 </div>
 <div class="content">
   <div class="row">
@@ -229,7 +229,7 @@
 
   function fetchLatestSOSAlert() {
     $.ajax({
-      url: "http://13.234.217.68:8000/dashboard/api/fetch_sos_alert",  // The API endpoint
+      url: "http://13.232.127.97:8000/dashboard/api/fetch_sos_alert/",  // The API endpoint
       method: 'GET',
       success: function (data) {
         if (data.alert) {
@@ -252,16 +252,17 @@
 
 
   function triggerSOSAlert() {
-    fetch("http://13.234.217.68:8000/dashboard/api/fetch_sos_alert")
+    fetch("http://13.232.127.97:8000/dashboard/api/fetch_sos_alert/")
       .then(response => response.json())
       .then(data => {
         if (data.alert) {
           const name = data.alert.name;
+          const message = data.alert.message;
           const latitude = data.alert.latitude;
           const longitude = data.alert.longitude;
 
           // Now pass latitude and longitude to the Swal function
-          demo.showSwal('success-message', name, latitude, longitude);
+          demo.showSwal('success-message', name, message, latitude + ", " + longitude);
         } else {
           console.log(data.message);  // No recent SOS alerts
         }
